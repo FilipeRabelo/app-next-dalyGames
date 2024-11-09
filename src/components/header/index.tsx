@@ -3,6 +3,7 @@ import Link from 'next/link';
 import logoImg from '../../../public/logo.svg';
 
 import { LiaGamepadSolid } from 'react-icons/lia';
+import { FaGithub } from 'react-icons/fa'
 
 
 export function Header() {
@@ -30,9 +31,13 @@ export function Header() {
           </Link>
         </nav>
 
-        <div className="hidden sm:flex justify-center items-center">
+        <div className="hidden sm:flex justify-center items-center gap-5">
           <Link href={'/profile'}>
-            <LiaGamepadSolid size={34} color='#DC143C' />
+            <LiaGamepadSolid size={40} color='#DC143C' />
+          </Link>
+
+          <Link href={'https://github.com/FilipeRabelo'} target="_blank">
+            <FaGithub size={30} color='#DC143C' />
           </Link>
         </div>
       </div>
