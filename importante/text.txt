@@ -1,0 +1,4 @@
+ link da rota
+
+
+ https://sujeitoprogramador.com/next-api/?api=game_day
