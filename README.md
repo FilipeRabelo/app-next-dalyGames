@@ -1,6 +1,3 @@
-Aqui está um exemplo de README para o projeto **DalyGames**:
-
----
 
 # DalyGames 🎮
 
@@ -82,7 +79,3 @@ Contribuições são bem-vindas! Siga os passos abaixo para contribuir:
 ## 📝 Licença
 
 Este projeto está sob a licença MIT. Consulte o arquivo `LICENSE` para mais detalhes.
-
----
-
-Isso deve proporcionar uma visão clara e organizada para novos usuários e desenvolvedores interessados em contribuir com o **DalyGames**!
