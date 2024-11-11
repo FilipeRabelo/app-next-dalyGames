@@ -7,7 +7,9 @@ import { GamesProps } from '@/utils/types/game';
 async function getData(title: string) {
 
   try {
-    const res = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&title=${title}`);
+    const decodeTitle = decodeURI(title);
+
+    const res = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&title=${decodeTitle}`);
     return res.json();
   } catch (err) {
     throw new Error("Failed " + err)
@@ -15,13 +17,15 @@ async function getData(title: string) {
 
 }
 
+
+
 export default async function Search({
   params: { title }
 }: {
   params: { title: string }
 }) {
 
-  // resultado esta dentro da variael games
+  // resultado esta dentro da variavel games
   const games: GamesProps[] = await getData(title);  // passando a requisicao para a variavel
 
   return (

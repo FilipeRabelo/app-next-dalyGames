@@ -35,6 +35,7 @@ async function getGamesData() {
   }
 }
 
+
 export default async function Home() {
 
   const dalyGame: GamesProps = await getDalyGames();
@@ -52,6 +53,7 @@ export default async function Home() {
         </h1>
 
         <Link href={`/game/${dalyGame.id}`}>
+
           <section className="w-full bg-black rounded-lg mb-7">
 
             <div className="w-full max-h-96 h-96 relative rounded-lg">

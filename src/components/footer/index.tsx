@@ -7,14 +7,15 @@ import { FaGithub } from 'react-icons/fa'
 
 export function Footer() {
   return (
-    <footer className="w-full bg-[#101026] py-6 mt-auto">
+    <footer className="w-full bg-[#101026] py-6 mt-5 text-md sm:text-sm">
+
       <div className="max-w-screen-xl mx-auto flex justify-center items-center">
         <p className="text-center text-white font-bold">
           Desenvolvido em Next.js | Tailwind
         </p>
       </div>
 
-      <div className="max-w-screen-xl mx-auto flex justify-center items-center gap-5 mt-2">
+      <div className="max-w-screen-xl mx-auto flex justify-center items-center gap-5">
         <div className="justify-center items-center">
           <Link href={'/profile'}>
             <LiaGamepadSolid size={40} color='#DC143C' />
@@ -32,6 +33,7 @@ export function Footer() {
             <FaGithub size={30} color='#DC143C' />
           </Link>
         </div>
+
       </div>
     </footer>
   );
