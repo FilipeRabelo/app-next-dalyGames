@@ -30,9 +30,23 @@ export async function generateMetadata({ params }: PropsParams): Promise<Metadat
         }
       })
 
-    return{
+    return {
       title: response.title,       // caso der tudo certo, texto personalizado
-      description: `${response.description}`
+      description: `${response.description.slice(0, 100)}...`,
+      openGraph: {
+        title: response.title,
+        images: [response.image_url]
+      },
+      robots: {
+        index: true,
+        follow: true,
+        nocache: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          noimageindex: true
+        }
+      }
     }
 
   } catch (err) {
