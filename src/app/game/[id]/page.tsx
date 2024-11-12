@@ -12,12 +12,13 @@ import Image from "next/image";
 import { Metadata } from 'next'
 
 interface PropsParams {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
 
-export async function generateMetadata({ params }: PropsParams): Promise<Metadata> {
+export async function generateMetadata(props: PropsParams): Promise<Metadata> {
+  const params = await props.params;
 
   try {
     const response: GameProps = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&id=${params.id}`, {
@@ -86,12 +87,17 @@ async function getGameSorted() {
 
 // export default async function Game({ params: { id } }: { params: { id: string } }) {
 
-export default async function Game({
-  params: { id }                     // trazendo o parâmetro
-}: {
+export default async function Game(
+  props: {
 
-  params: { id: string }           // tipando o parâmetro
-}) {
+    params: Promise<{ id: string }>           // tipando o parâmetro
+  }
+) {
+  const params = await props.params;
+
+  const {
+    id
+  } = params;
 
   const data: GameProps = await getData(id);     // chamando pelo lado do servidor
   const sortedGame: GameProps = await getGameSorted();
