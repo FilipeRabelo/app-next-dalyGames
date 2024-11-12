@@ -21,7 +21,8 @@ export async function generateMetadata(props: PropsParams): Promise<Metadata> {
   const params = await props.params;
 
   try {
-    const response: GameProps = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&id=${params.id}`, {
+    // const response: GameProps = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&id=${params.id}`, {
+    const response: GameProps = await fetch(`https://sujeitoprogramador.com/next-api/?api=game&id=${params.id}`, {
       next: { revalidate: 60 }
     })
       .then((res) => res.json())
@@ -61,7 +62,8 @@ export async function generateMetadata(props: PropsParams): Promise<Metadata> {
 async function getData(id: string) {
 
   try {
-    const res = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&id=${id}`, {
+    // const res = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&id=${id}`, {
+    const res = await fetch(`https://sujeitoprogramador.com/next-api/?api=game&id=${id}`, {
       next: { revalidate: 60 }
     });
     return res.json();
@@ -74,7 +76,8 @@ async function getData(id: string) {
 async function getGameSorted() {
 
   try {
-    const res = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game_day`, {
+    // const res = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game_day`, {
+    const res = await fetch(`https://sujeitoprogramador.com/next-api/?api=game_day`, {
       cache: "no-store"
     });
     return res.json();
