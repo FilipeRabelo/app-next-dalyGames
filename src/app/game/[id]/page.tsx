@@ -96,7 +96,7 @@ export default async function Game({
   const data: GameProps = await getData(id);     // chamando pelo lado do servidor
   const sortedGame: GameProps = await getGameSorted();
 
-  console.log('aqui esta os dados ... ' + data.id);
+  console.log('aqui esta os dados do id... ' + data.id);
   console.log(sortedGame);
 
   if (!data) {
