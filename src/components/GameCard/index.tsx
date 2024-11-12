@@ -2,10 +2,10 @@
 import Link from "next/link";
 import Image from "next/image";
 import { BiRightArrowCircle } from 'react-icons/bi';
-import { GamesProps } from '@/utils/types/game';
+import { GameProps } from '@/utils/types/game';
 
 interface GameCardProps {
-  data: GamesProps
+  data: GameProps
 }
 
 export function GameCard({ data }: GameCardProps) {

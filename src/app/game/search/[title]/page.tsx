@@ -2,7 +2,7 @@
 import { Container } from '@/components/container';
 import { GameCard } from '@/components/GameCard';
 import { Input } from '@/components/input';
-import { GamesProps } from '@/utils/types/game';
+import { GameProps } from '@/utils/types/game';
 
 async function getData(title: string) {
 
@@ -26,7 +26,7 @@ export default async function Search({
 }) {
 
   // resultado esta dentro da variavel games
-  const games: GamesProps[] = await getData(title);  // passando a requisicao para a variavel
+  const games: GameProps[] = await getData(title);  // passando a requisicao para a variavel
 
   return (
     <main className="min-h-screen w-full text-white">

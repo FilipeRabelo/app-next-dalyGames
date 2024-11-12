@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from 'next/link';
 
 import { Container } from "@/components/container";
-import { GamesProps } from '@/utils/types/game';
+import { GameProps } from '@/utils/types/game';
 
 import { BsArrowRightSquare } from 'react-icons/bs';
 import { Input } from '@/components/input/index';
@@ -38,8 +38,8 @@ async function getGamesData() {
 
 export default async function Home() {
 
-  const dalyGame: GamesProps = await getDalyGames();
-  const data: GamesProps[] = await getGamesData();
+  const dalyGame: GameProps = await getDalyGames();
+  const data: GameProps[] = await getGamesData();
 
   // console.log(dalyGame);
 

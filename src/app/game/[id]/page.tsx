@@ -3,13 +3,13 @@
 // jogo aleatório:
 // https://sujeitoprogramador.com/next-api/?api=game_day
 
-import { GamesProps } from "@/utils/types/game";
+import { GameProps } from "@/utils/types/game";
 import { redirect } from "next/navigation";
 import { Container } from "@/components/container";
 import { Label } from "./components/label";
 import { GameCard } from "@/components/GameCard";
-import Image from "next/image";
 import { Metadata } from 'next'
+import Image from "next/image";
 
 interface PropsParams {
   params: {
@@ -17,21 +17,19 @@ interface PropsParams {
   }
 }
 
-export async function generateMetadata({ params }: PropsParams): Promise<Metadata> {
 
+export async function generateMetadata({ params }: PropsParams): Promise<Metadata> {
   try {
-    const response: GamesProps = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&id=${params.id}`, {
-      next: { revalidate: 60 }
-    })
+    const response: GameProps = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&id=${params.id}`, { next: { revalidate: 60 } })
       .then((res) => res.json())
       .catch(() => {
         return {
-          title: 'Descubra Jogos incríveis para se divertir!' // caso de erro na api, retorna um texto genérico
+          title: "DalyGames - Descubra jogos incríveis para se divertir."
         }
       })
 
     return {
-      title: response.title,       // caso der tudo certo, texto personalizado
+      title: response.title,
       description: `${response.description.slice(0, 100)}...`,
       openGraph: {
         title: response.title,
@@ -44,19 +42,19 @@ export async function generateMetadata({ params }: PropsParams): Promise<Metadat
         googleBot: {
           index: true,
           follow: true,
-          noimageindex: true
+          noimageindex: true,
         }
       }
     }
 
   } catch (err) {
     return {
-      title: 'Descubra Jogos incríveis para se divertir!' // caso de erro na api, retorna um texto genérico
+      title: "DalyGames - Descubra jogos incríveis para se divertir."
     }
   }
 }
 
-// detalhes do jogo
+
 async function getData(id: string) {
 
   try {
@@ -85,19 +83,15 @@ async function getGameSorted() {
 
 
 export default async function Game({
-  params: { id }                     // trazendo o parâmetro
+  params: { id }
 }: {
-
-  params: { id: string }           // tipando o parâmetro
+  params: { id: string }
 }) {
-
-  const data: GamesProps = await getData(id);     // chamando pelo lado do servidor
-  const sortedGame: GamesProps = await getGameSorted();
-
-  console.log(sortedGame)
+  const data: GameProps = await getData(id)
+  const sortedGame: GameProps = await getGameSorted();
 
   if (!data) {
-    redirect('/');
+    redirect("/")
   }
 
   return (
