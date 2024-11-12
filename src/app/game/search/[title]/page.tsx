@@ -9,7 +9,8 @@ async function getData(title: string) {
   try {
     const decodeTitle = decodeURI(title);
 
-    const res = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&title=${decodeTitle}`);
+    // const res = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&title=${decodeTitle}`);
+    const res = await fetch(`https://sujeitoprogramador.com/next-api/?api=game&title=${decodeTitle}`);
     return res.json();
   } catch (err) {
     throw new Error("Failed " + err)
@@ -31,7 +32,7 @@ export default async function Search(
   } = params;
 
   // resultado esta dentro da variavel games
-  const games: GameProps[] = await getData(title);  // passando a requisicao para a variavel
+  const games: GameProps[] = await getData(title);  // passando a requisição para a variavel
 
   return (
     <main className="min-h-screen w-full text-white">
