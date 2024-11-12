@@ -8,8 +8,8 @@ import { redirect } from "next/navigation";
 import { Container } from "@/components/container";
 import { Label } from "./components/label";
 import { GameCard } from "@/components/GameCard";
-import { Metadata } from 'next'
 import Image from "next/image";
+import { Metadata } from 'next'
 
 interface PropsParams {
   params: {
@@ -17,14 +17,16 @@ interface PropsParams {
   }
 }
 
-
 export async function generateMetadata({ params }: PropsParams): Promise<Metadata> {
+
   try {
-    const response: GameProps = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&id=${params.id}`, { next: { revalidate: 60 } })
+    const response: GameProps = await fetch(`${process.env.NEXT_API_URL}/next-api/?api=game&id=${params.id}`, {
+      next: { revalidate: 60 }
+    })
       .then((res) => res.json())
       .catch(() => {
         return {
-          title: "DalyGames - Descubra jogos incríveis para se divertir."
+          title: 'Descubra Jogos incríveis para se divertir!' // caso de erro na api, retorna um texto genérico
         }
       })
 
@@ -49,12 +51,12 @@ export async function generateMetadata({ params }: PropsParams): Promise<Metadat
 
   } catch (err) {
     return {
-      title: "DalyGames - Descubra jogos incríveis para se divertir."
+      title: 'Descubra Jogos incríveis para se divertir!' // caso de erro na api, retorna um texto genérico
     }
   }
 }
 
-
+// detalhes do jogo
 async function getData(id: string) {
 
   try {
@@ -82,16 +84,23 @@ async function getGameSorted() {
 }
 
 
+// export default async function Game({ params: { id } }: { params: { id: string } }) {
+
 export default async function Game({
-  params: { id }
+  params: { id }                     // trazendo o parâmetro
 }: {
-  params: { id: string }
+
+  params: { id: string }           // tipando o parâmetro
 }) {
-  const data: GameProps = await getData(id)
+
+  const data: GameProps = await getData(id);     // chamando pelo lado do servidor
   const sortedGame: GameProps = await getGameSorted();
 
+  console.log('aqui esta os dados ... ' + data.id);
+  console.log(sortedGame);
+
   if (!data) {
-    redirect("/")
+    redirect('/');
   }
 
   return (
